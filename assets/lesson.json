@@ -1,0 +1,54 @@
+{
+  "id": "lesson-basics-1",
+  "title": "Basics 1 — Greetings",
+  "xp_per_correct": 10,
+  "streak_increment": 1,
+  "exercises": [
+    {
+      "id": "ex1",
+      "type": "multiple_choice",
+      "prompt": "Select the translation for: Hello",
+      "choices": ["Hola", "Adiós", "Gracias"],
+      "answer": "Hola",
+      "explanation": "\"Hola\" means Hello in Spanish."
+    },
+    {
+      "id": "ex2",
+      "type": "type_answer",
+      "prompt": "Type the translation for: Thank you",
+      "answer": "gracias",
+      "explanation": "\"Gracias\" means Thank you."
+    },
+    {
+      "id": "ex3",
+      "type": "word_bank",
+      "prompt": "Build: See you later",
+      "bank": ["te", "veo", "más", "tarde", "hasta", "luego"],
+      "answer": ["hasta", "luego"],
+      "explanation": "Phrase commonly taught as a set: \"Hasta luego.\""
+    },
+    {
+      "id": "ex4",
+      "type": "multiple_choice",
+      "prompt": "Select the translation for: Goodbye",
+      "choices": ["Gracias", "Adiós", "Por favor"],
+      "answer": "Adiós",
+      "explanation": "\"Adiós\" is Goodbye."
+    },
+    {
+      "id": "ex5",
+      "type": "type_answer",
+      "prompt": "Type the translation for: Please",
+      "answer": "por favor",
+      "explanation": "\"Por favor\" means Please."
+    },
+    {
+      "id": "ex6",
+      "type": "multiple_choice",
+      "prompt": "What does 'Buenos días' mean?",
+      "choices": ["Good morning", "Good night", "Good afternoon"],
+      "answer": "Good morning",
+      "explanation": "\"Buenos días\" means Good morning."
+    }
+  ]
+}
