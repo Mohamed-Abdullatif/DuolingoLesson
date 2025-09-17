@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface LessonState {
     progress: number
@@ -14,36 +16,44 @@ interface LessonState {
     resetLesson: () => void
 }
 
-export const useLessonStore = create<LessonState>((set) => ({
-    progress: 0,
-    score: 0,
-    hearts: 3,
-    correctAnswers: 0,
-    totalQuestions: 0,
+export const useLessonStore = create<LessonState>()(
+    persist(
+        (set) => ({
+            progress: 0,
+            score: 0,
+            hearts: 3,
+            correctAnswers: 0,
+            totalQuestions: 0,
 
-    setProgress: (progress) => set({ progress }),
+            setProgress: (progress: number) => set({ progress }),
 
-    incrementScore: () => set((state) => ({
-        score: state.score + 1
-    })),
+            incrementScore: () => set((state) => ({
+                score: state.score + 1
+            })),
 
-    decrementHearts: () => set((state) => ({
-        hearts: Math.max(0, state.hearts - 1)
-    })),
+            decrementHearts: () => set((state) => ({
+                hearts: Math.max(0, state.hearts - 1)
+            })),
 
-    incrementCorrectAnswers: () => set((state) => ({
-        correctAnswers: state.correctAnswers + 1
-    })),
+            incrementCorrectAnswers: () => set((state) => ({
+                correctAnswers: state.correctAnswers + 1
+            })),
 
-    setTotalQuestions: (total) => set({
-        totalQuestions: total
-    }),
+            setTotalQuestions: (total: number) => set({
+                totalQuestions: total
+            }),
 
-    resetLesson: () => set({
-        progress: 0,
-        score: 0,
-        hearts: 3,
-        correctAnswers: 0,
-        totalQuestions: 0
-    })
-}))
+            resetLesson: () => set({
+                progress: 0,
+                score: 0,
+                hearts: 3,
+                correctAnswers: 0,
+                totalQuestions: 0
+            })
+        }),
+        {
+            name: 'lesson-storage',
+            storage: createJSONStorage(() => AsyncStorage)
+        }
+    )
+)
