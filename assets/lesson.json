@@ -1,6 +1,7 @@
 {
   "id": "lesson-basics-1",
   "title": "Basics 1 — Greetings",
+  "estimated_time_minutes": 5,
   "xp_per_correct": 10,
   "streak_increment": 1,
   "exercises": [

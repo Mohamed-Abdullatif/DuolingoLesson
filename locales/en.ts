@@ -1,6 +1,7 @@
 export const en = {
   startScreen: {
     exercises: 'exercises',
+    estimatedTime: 'Estimated time',
     startLesson: 'Start Lesson',
   },
   lesson: {
@@ -9,6 +10,7 @@ export const en = {
     next: 'Next',
     finish: 'Finish',
     submit: 'Submit',
+    audioFallback: 'Audio not available - text displayed instead',
   },
   completion: {
     title: 'Lesson Complete!',

@@ -21,6 +21,9 @@ export default function StartScreen() {
       <Text style={styles.subtitle}>
         {lessonData.exercises.length} {t.startScreen.exercises}
       </Text>
+      <Text style={styles.estimatedTime}>
+        {t.startScreen.estimatedTime}: {lessonData.estimated_time_minutes} min
+      </Text>
 
       <TouchableOpacity
         style={styles.button}
@@ -64,6 +67,11 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 16,
     color: '#666',
+    marginBottom: 8,
+  },
+  estimatedTime: {
+    fontSize: 14,
+    color: '#888',
     marginBottom: 48,
   },
   button: {

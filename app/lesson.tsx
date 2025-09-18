@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
 import { useLocale } from '../context/LocaleContext';
 import { ProgressBar } from '../components/ProgressBar';
 import { Score } from '../components/Score';
@@ -9,6 +10,7 @@ import { Hearts } from '../components/Hearts';
 import { MultipleChoice } from '../components/MultipleChoice';
 import { TextInputExercise } from '../components/TextInput';
 import { WordBank } from '../components/WordBank';
+import { AudioFallback } from '../components/AudioFallback';
 import { Exercise, Progress } from '../types/simple';
 import lessonData from '../assets/lesson.json';
 
@@ -96,10 +98,14 @@ export default function LessonScreen() {
       if (isLastExercise) {
         setStreak(streak + lessonData.streak_increment);
       }
+      // Success haptic feedback
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     } else {
       if (hearts > 0) {
         setHearts(hearts - 1);
       }
+      // Error haptic feedback
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
     }
   };
 
@@ -139,6 +145,17 @@ export default function LessonScreen() {
           question={currentExercise.prompt}
           onSubmit={handleAnswer}
         />
+      ) : currentExercise.type === 'listening' ? (
+        <View style={styles.listeningContainer}>
+          <AudioFallback
+            text={currentExercise.audio_text || currentExercise.prompt}
+            visible={true}
+          />
+          <TextInputExercise
+            question="What did you hear?"
+            onSubmit={handleAnswer}
+          />
+        </View>
       ) : (
         <WordBank
           prompt={currentExercise.prompt}
@@ -170,6 +187,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
     paddingTop: 50,
+  },
+  listeningContainer: {
+    padding: 24,
   },
   result: {
     position: 'absolute',

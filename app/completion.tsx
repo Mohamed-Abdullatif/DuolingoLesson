@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
 import { useLocale } from '../context/LocaleContext';
 import { Progress } from '../types/simple';
 
@@ -28,6 +29,9 @@ export default function CompletionScreen() {
   };
 
   const startCelebration = () => {
+    // Celebration haptic feedback
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
     Animated.sequence([
       Animated.timing(celebrationAnim, {
         toValue: 1,
